@@ -40,7 +40,7 @@ function renderWheather(data) {
     
     getPic(data);
 
-    cWeather.innerText = data.weather[0].description;
+    cWeather.innerText = (String(data.weather[0].description)).toUpperCase();
     cTemp.innerText = "Temperature: " + Math.floor(+data.main.temp - 273.15) + " \u00B0C";
     humidity.innerText = "Humidity: " + data.main.humidity + "%";
     wind.innerText = "Wind Speed: " + data.wind.speed + " m/s";
@@ -50,7 +50,7 @@ function renderWheather(data) {
 
 async function getPic(info){
 
-    let imgDescription = info.weather[0].description + info.name;
+    let imgDescription = info.name + info.weather[0].description;
 
     let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=MBnLIaKTWifuoAMNwIY3dvrjz0CjHuPJ&s=${imgDescription}`,{mode:"cors"});
 
