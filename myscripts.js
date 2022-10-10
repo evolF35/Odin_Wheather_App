@@ -13,8 +13,13 @@ let maxTemp = document.querySelector(".maxTemp");
 let humidity = document.querySelector(".humidity");
 let wind = document.querySelector(".wind");
 
+let returnError = document.querySelector(".error");
+
+
 
 async function getWheather(input) {
+
+    returnError.innerText = "";
 
     let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&APPID=bb1970edca621eaec570c9e3e45940c0`);
     let data = await response.json();
@@ -22,6 +27,9 @@ async function getWheather(input) {
     if(data.name != undefined){
         console.log(data);
         renderWheather(data);
+    }
+    else{
+        returnError.innerText = "Location Unknown";
     }
 }
 
